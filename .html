@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hannah Nyandia — Be My Valentine? 💖</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle, #ffb6c1, #ff1e56);
+      font-family: 'Georgia', serif;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Falling rose petals */
+    .petals {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      background: url('https://i.imgur.com/4KQ3Q.gif');
+      opacity: 0.6;
+    }
+
+    /* Sparkles */
+    .sparkles {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      background: url('https://i.imgur.com/3b4Z7.gif');
+      opacity: 0.2;
+    }
+
+    .heart {
+      font-size: 120px;
+      animation: beat 0.8s infinite;
+      filter: drop-shadow(0 0 20px #fff);
+    }
+
+    @keyframes beat {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+
+    /* Floating glowing photo */
+    .photo {
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid white;
+      box-shadow: 0 0 30px white;
+      margin: 15px 0;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0px); }
+    }
+
+    h1 {
+      margin: 5px 0;
+      font-size: 3rem;
+      text-shadow: 0 0 10px white;
+    }
+
+    p {
+      max-width: 650px;
+      font-size: 1.25rem;
+      line-height: 1.7;
+      text-shadow: 0 0 5px white;
+    }
+
+    .love-letter {
+      margin-top: 10px;
+      font-style: italic;
+      font-size: 1.1rem;
+      max-width: 600px;
+      opacity: 0.9;
+    }
+
+    .signature {
+      margin-top: 5px;
+      font-weight: bold;
+      text-shadow: 0 0 8px white;
+    }
+
+    .buttons {
+      margin-top: 25px;
+      position: relative;
+      width: 320px;
+      height: 120px;
+    }
+
+    button {
+      padding: 14px 28px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    #yesBtn {
+      background: white;
+      color: #ff1e56;
+      box-shadow: 0 0 15px white;
+    }
+
+    #noBtn {
+      background: rgba(255,255,255,0.7);
+      color: #ff1e56;
+      position: absolute;
+      right: 0;
+    }
+
+    #message {
+      display: none;
+      margin-top: 20px;
+      font-size: 1.6rem;
+      font-weight: bold;
+      text-shadow: 0 0 10px white;
+      animation: glow 1s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 5px white; }
+      to { text-shadow: 0 0 20px white; }
+    }
+
+    /* Surprise popup */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      color: #ff1e56;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255,30,86,0.7);
+      text-align: center;
+      z-index: 1000;
+    }
+
+    .popup h3 { margin: 0; }
+  </style>
+</head>
+<body>
+  <div class="petals"></div>
+  <div class="sparkles"></div>
+
+  <!-- Background music (replace link if you want a different song) -->
+  <audio id="bgMusic" autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="heart">💖</div>
+
+  <!-- Fixed local image path -->
+  <img src="./hannah.jpg" alt="Hannah Nyandia" class="photo" />
+
+  <h1>Hannah Nyandia…</h1>
+  <p>
+    From the moment you walked into my life, the universe felt different.
+    Stars shine brighter because of you. My heart beats louder because of you.
+    Every smile of yours feels like a blessing written across the heavens.
+  </p>
+
+  <div class="love-letter">
+    "If love had a face, it would look like you. If my heart could speak,
+    it would whisper your name every second. You are my favorite thought,
+    my sweetest dream, and my greatest reality."
+  </div>
+
+  <div class="signature">— BigDaddy Sunday 💘</div>
+
+  <h2>Will you be my Valentine, my queen? 💕</h2>
+
+  <div class="buttons">
+    <button id="yesBtn">YES — Forever & Always!</button>
+    <button id="noBtn">No</button>
+  </div>
+
+  <div id="message">Hannah Nyandia, you just made my heart EXPLODE with love! 🥰💞</div>
+
+  <div class="popup" id="popup">
+    <h3>💍 SURPRISE 💍</h3>
+    <p>You + Me + Dinner + Forever?</p>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    const message = document.getElementById('message');
+    const popup = document.getElementById('popup');
+    const music = document.getElementById('bgMusic');
+
+    // Make the "No" button run away
+    noBtn.addEventListener('mouseover', () => {
+      const x = Math.random() * 220;
+      const y = Math.random() * 80;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+
+    // When she says YES
+    yesBtn.addEventListener('click', () => {
+      message.style.display = 'block';
+      document.body.style.background = 'radial-gradient(circle, #ffffff, #ff1e56)';
+      music.volume = 0.3;
+
+      // Show surprise popup after 1 second
+      setTimeout(() => {
+        popup.style.display = 'block';
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
