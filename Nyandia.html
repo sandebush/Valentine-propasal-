@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nyandia — Be My Valentine 💖</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      font-family: 'Georgia', serif;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin: 0;
+      text-shadow: 0 0 10px #fff;
+    }
+
+    p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 15px 0;
+    }
+
+    .heart {
+      font-size: 80px;
+      margin: 20px 0;
+      animation: beat 1s infinite;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+
+    .flower {
+      width: 60px;
+      margin: 10px;
+    }
+
+    .flowers-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 12px 25px;
+      margin-top: 20px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      background: #fff;
+      color: #ff5a87;
+      box-shadow: 0 0 10px rgba(255,90,135,0.7);
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    #message {
+      display: none;
+      font-size: 1.5rem;
+      margin-top: 20px;
+      color: #fff;
+      text-shadow: 0 0 10px #ff5a87;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="heart">💖</div>
+  <h1>Nyandia…</h1>
+  <p>From the moment I met you, every day has felt brighter, warmer, and filled with love. Will you be my Valentine?</p>
+
+  <div class="flowers-container">
+    <img class="flower" src="https://i.imgur.com/4KQ3Q.gif" alt="flower">
+    <img class="flower" src="https://i.imgur.com/3b4Z7.gif" alt="flower">
+    <img class="flower" src="https://i.imgur.com/4KQ3Q.gif" alt="flower">
+  </div>
+
+  <button id="yesBtn">YES, Nyandia 💕</button>
+
+  <div id="message">You just made my heart overflow with love! 🥰💖</div>
+
+  <script>
+    const yesBtn = document.getElementById('yesBtn');
+    const message = document.getElementById('message');
+
+    yesBtn.addEventListener('click', () => {
+      message.style.display = 'block';
+      yesBtn.style.display = 'none';
+    });
+  </script>
+
+</body>
+</html>
